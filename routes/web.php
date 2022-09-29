@@ -23,3 +23,4 @@ Route::get('/dashboard', function () {
 Route::get('/',[ProjectController::class,'getAllDepartments'])->name('getAllDepartments');
 Route::post('showAppointments',[ProjectController::class,'showAppointments'])->name('showAppointments')->middleware('auth');
 Route::post('/bookAppointment',[ProjectController::class,'bookAppointment'])->name('bookAppointment')->middleware('auth');
+Route::get('myBookings',[ProjectController::class,'myBookings'])->name('mybookings');
