@@ -11,6 +11,7 @@
             <th scope="col">Appointment Id</th>
             <th scope="col">Department Name</th>
             <th scope="col">Appointment Date</th>
+            <th scope="col">Booking Cancel</th>
         </tr>
     </thead>
     <tbody>
@@ -20,9 +21,18 @@
             <td>{{$booking->appointment_id}}</td>
             <td>{{$booking->department_name}}</td>
             <td>{{$booking->appointment_date}}</td>
+            <td>
+            <form action="{{route('cancelBooking')}}" method="POST">
+                @csrf
+                <input type="hidden" value="{{$booking->id}}" name="booking_id">
+                <input type="hidden" value="{{$booking->appointment_id}}" name="appointment_id">
+
+                <input type="submit" value="Cancel" class="btn btn-danger">
+            </form>
+            </td>
         </tr>
         @endforeach
-    </tbody>
+    </tbody> 
 </table>
 </div>
 @endsection

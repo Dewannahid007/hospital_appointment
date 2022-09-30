@@ -20,7 +20,9 @@ Route::get('/dashboard', function () {
     })->name('dashboard');
 });
 
-Route::get('/',[ProjectController::class,'getAllDepartments'])->name('getAllDepartments');
+Route::get('/',[ProjectController::class,'getAllDepartments'])->name('home');
 Route::post('showAppointments',[ProjectController::class,'showAppointments'])->name('showAppointments')->middleware('auth');
 Route::post('/bookAppointment',[ProjectController::class,'bookAppointment'])->name('bookAppointment')->middleware('auth');
-Route::get('myBookings',[ProjectController::class,'myBookings'])->name('mybookings');
+Route::get('myBookings',[ProjectController::class,'myBookings'])->name('myBookings');
+
+Route::post('cancelBooking',[ProjectController::class,'cancelBooking'])->name('cancelBooking')->middleware('auth');

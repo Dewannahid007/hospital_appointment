@@ -60,11 +60,24 @@ class ProjectController extends Controller
 
 
     }
-    public function mybookings(Request $request){
+    public function myBookings(Request $request){
 
 
         $bookings= Booking::where('user_id',Auth::user()->id)->get();
         return view('myBookings',['bookings'=>$bookings]);
+
+    }
+    public function cancelBooking(Request $request){
+       $booking_id =  $request->input('booking_id');
+       $appointment_id=$request->input('appointment_id');
+       Booking::where('id',$booking_id)->delete();
+
+       Appointment::where('id',$appointment_id)->update(['taken'=>0]);
+       Session::flash('message','Appointment Canceled Successfully');
+       Session::flash('alert-class','alert-success');
+
+
+       return redirect('/');
 
     }
 
